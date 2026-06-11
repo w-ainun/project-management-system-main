@@ -4,6 +4,22 @@
 @import './dialogs';
 @import './loading.io';
 
+/* ═══════════════════════════════════════════════════════ */
+/*  MIDNIGHT INDIGO THEME — Custom Design System          */
+/* ═══════════════════════════════════════════════════════ */
+
+/* ── Theme Variables ── */
+:root {
+    --indigo-deep: #1e1b4b;
+    --indigo-mid: #312e81;
+    --indigo-bright: #4f46e5;
+    --violet-accent: #7c3aed;
+    --teal-accent: #14b8a6;
+    --slate-bg: #f8fafc;
+    --card-shadow: 0 1px 3px rgba(30, 27, 75, 0.06), 0 4px 12px rgba(30, 27, 75, 0.04);
+    --card-shadow-hover: 0 4px 12px rgba(30, 27, 75, 0.1), 0 8px 24px rgba(30, 27, 75, 0.06);
+}
+
 /* ── Custom Sidebar Styles ── */
 
 /* Custom scrollbar for the dark sidebar */
@@ -62,10 +78,541 @@
     background: white !important;
 }
 
+/* ── Page Header Enhancement ── */
 .filament-header-heading {
     display: block;
 }
 
+.filament-header {
+    position: relative;
+}
+
+/* ── Welcome Banner ── */
+.midnight-welcome-banner {
+    background: linear-gradient(135deg, #1e1b4b 0%, #312e81 40%, #4f46e5 80%, #7c3aed 100%);
+    border-radius: 16px;
+    padding: 28px 32px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 20px rgba(30, 27, 75, 0.25);
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -20%;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(124, 58, 237, 0.3) 0%, transparent 70%);
+        border-radius: 50%;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -30%;
+        left: 10%;
+        width: 200px;
+        height: 200px;
+        background: radial-gradient(circle, rgba(20, 184, 166, 0.2) 0%, transparent 70%);
+        border-radius: 50%;
+    }
+
+    .banner-content {
+        position: relative;
+        z-index: 1;
+    }
+
+    .banner-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 4px;
+        letter-spacing: -0.02em;
+    }
+
+    .banner-subtitle {
+        font-size: 0.875rem;
+        color: rgba(255, 255, 255, 0.75);
+        font-weight: 400;
+    }
+
+    .banner-stats {
+        display: flex;
+        gap: 32px;
+        margin-top: 16px;
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+
+            .stat-value {
+                font-size: 1.5rem;
+                font-weight: 700;
+            }
+
+            .stat-label {
+                font-size: 0.75rem;
+                color: rgba(255, 255, 255, 0.6);
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+            }
+        }
+    }
+}
+
+/* ── Dashboard Page Background ── */
+.filament-page .filament-widgets {
+    position: relative;
+}
+
+/* ── Glassmorphism Widget Cards ── */
+.filament-widget {
+
+    /* Stats Overview Widget */
+    .filament-stats-overview-widget-card {
+        border: 1px solid rgba(79, 70, 229, 0.08) !important;
+        border-radius: 14px !important;
+        overflow: hidden;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: var(--card-shadow);
+        position: relative;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--indigo-bright), var(--violet-accent));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        &:hover {
+            box-shadow: var(--card-shadow-hover);
+            transform: translateY(-2px);
+            border-color: rgba(79, 70, 229, 0.15) !important;
+
+            &::before {
+                opacity: 1;
+            }
+        }
+    }
+
+    /* Table Widget Cards */
+    .filament-tables-component {
+        border: 1px solid rgba(79, 70, 229, 0.08) !important;
+        border-radius: 14px !important;
+        overflow: hidden;
+        box-shadow: var(--card-shadow);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+        &:hover {
+            box-shadow: var(--card-shadow-hover);
+        }
+    }
+
+    /* Widget Headers — Gradient Accent */
+    .filament-tables-header {
+        border-bottom: 2px solid transparent;
+        border-image: linear-gradient(90deg, var(--indigo-bright), var(--violet-accent), var(--teal-accent)) 1;
+        padding-bottom: 12px;
+
+        h2 {
+            color: var(--indigo-deep) !important;
+            font-weight: 700 !important;
+            letter-spacing: -0.01em;
+        }
+    }
+
+    /* Chart Widget Cards */
+    .filament-widgets-chart-widget {
+        border: 1px solid rgba(79, 70, 229, 0.08) !important;
+        border-radius: 14px !important;
+        overflow: hidden;
+        box-shadow: var(--card-shadow);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+        &:hover {
+            box-shadow: var(--card-shadow-hover);
+        }
+
+        header h2 {
+            color: var(--indigo-deep) !important;
+            font-weight: 700 !important;
+        }
+    }
+}
+
+/* ── Filament Cards General Enhancement ── */
+.filament-forms-card-component {
+    border: 1px solid rgba(79, 70, 229, 0.08) !important;
+    border-radius: 14px !important;
+    box-shadow: var(--card-shadow) !important;
+}
+
+/* ── Table Enhancements ── */
+.filament-tables-table {
+    thead th {
+        color: var(--indigo-deep) !important;
+        font-weight: 600 !important;
+        text-transform: uppercase;
+        font-size: 0.7rem !important;
+        letter-spacing: 0.06em;
+    }
+
+    tbody tr {
+        transition: background-color 0.15s ease;
+
+        &:hover {
+            background-color: rgba(79, 70, 229, 0.02) !important;
+        }
+    }
+}
+
+/* ── Buttons Theme ── */
+.filament-button {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+
+    &:hover {
+        transform: translateY(-1px);
+    }
+}
+
+/* ── Board Page Custom Styles ── */
+.board-page-container {
+    max-width: 640px;
+    margin: 0 auto;
+
+    .board-header-card {
+        background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4f46e5 100%);
+        border-radius: 16px;
+        padding: 32px;
+        color: white;
+        text-align: center;
+        margin-bottom: 24px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(30, 27, 75, 0.3);
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -15%;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.25) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .board-icon {
+            width: 56px;
+            height: 56px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            backdrop-filter: blur(8px);
+        }
+
+        .board-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .board-desc {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.5;
+        }
+    }
+
+    .board-form-card {
+        background: white;
+        border: 1px solid rgba(79, 70, 229, 0.1);
+        border-radius: 14px;
+        padding: 24px;
+        box-shadow: var(--card-shadow);
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--indigo-bright), var(--violet-accent), var(--teal-accent));
+        }
+
+        .form-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--indigo-deep);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+    }
+
+    .board-info-cards {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-top: 24px;
+
+        .info-card {
+            background: white;
+            border: 1px solid rgba(79, 70, 229, 0.08);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+
+            &:hover {
+                box-shadow: var(--card-shadow-hover);
+                transform: translateY(-2px);
+            }
+
+            .info-icon {
+                width: 40px;
+                height: 40px;
+                border-radius: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 auto 10px;
+            }
+
+            .info-title {
+                font-size: 0.9rem;
+                font-weight: 600;
+                color: var(--indigo-deep);
+                margin-bottom: 4px;
+            }
+
+            .info-desc {
+                font-size: 0.75rem;
+                color: #64748b;
+                line-height: 1.4;
+            }
+
+            &.kanban-card .info-icon {
+                background: rgba(20, 184, 166, 0.1);
+                color: var(--teal-accent);
+            }
+
+            &.scrum-card .info-icon {
+                background: rgba(124, 58, 237, 0.1);
+                color: var(--violet-accent);
+            }
+        }
+    }
+}
+
+/* ── Road Map Page Custom Styles ── */
+.roadmap-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 16px;
+
+    .roadmap-filter-form {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .roadmap-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+}
+
+.btn-indigo {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: linear-gradient(135deg, var(--indigo-bright), var(--violet-accent));
+    color: white;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(79, 70, 229, 0.25);
+
+    &:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(79, 70, 229, 0.35);
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+}
+
+.btn-teal {
+    @extend .btn-indigo;
+    background: linear-gradient(135deg, var(--teal-accent), #0d9488);
+    box-shadow: 0 2px 8px rgba(20, 184, 166, 0.25);
+
+    &:hover {
+        box-shadow: 0 4px 12px rgba(20, 184, 166, 0.35);
+    }
+}
+
+.roadmap-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 24px;
+    text-align: center;
+    color: #94a3b8;
+
+    .empty-icon {
+        width: 64px;
+        height: 64px;
+        background: rgba(79, 70, 229, 0.08);
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 16px;
+        color: var(--indigo-bright);
+    }
+
+    .empty-text {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: #64748b;
+    }
+}
+
+/* ── Kanban / Scrum Filter Enhancement ── */
+.midnight-filter-section {
+    background: white;
+    border: 1px solid rgba(79, 70, 229, 0.08);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    margin-bottom: 16px;
+
+    summary {
+        padding: 14px 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--indigo-deep);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: background-color 0.15s ease;
+        list-style: none;
+        user-select: none;
+
+        &::-webkit-details-marker {
+            display: none;
+        }
+
+        &::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 16px;
+            background: linear-gradient(180deg, var(--indigo-bright), var(--violet-accent));
+            border-radius: 2px;
+        }
+
+        &:hover {
+            background-color: rgba(79, 70, 229, 0.03);
+        }
+    }
+
+    &[open] summary {
+        border-bottom: 1px solid rgba(79, 70, 229, 0.06);
+    }
+
+    .filter-content {
+        padding: 16px 20px;
+    }
+}
+
+/* ── Scrum Empty State ── */
+.scrum-empty-state {
+    background: white;
+    border: 1px solid rgba(79, 70, 229, 0.08);
+    border-radius: 14px;
+    padding: 40px 32px;
+    text-align: center;
+    box-shadow: var(--card-shadow);
+
+    .empty-icon {
+        width: 56px;
+        height: 56px;
+        background: rgba(79, 70, 229, 0.08);
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 16px;
+        color: var(--indigo-bright);
+    }
+
+    .empty-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--indigo-deep);
+        margin-bottom: 6px;
+    }
+
+    .empty-desc {
+        font-size: 0.85rem;
+        color: #64748b;
+        margin-bottom: 16px;
+    }
+
+    .btn-manage-sprint {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 10px 20px;
+        background: linear-gradient(135deg, var(--indigo-bright), var(--violet-accent));
+        color: white;
+        border-radius: 10px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        box-shadow: 0 2px 8px rgba(79, 70, 229, 0.25);
+
+        &:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.35);
+        }
+    }
+}
+
+/* ── Ticket Comments ── */
 .ticket-comment {
 
     .actions {
@@ -81,7 +628,7 @@
 }
 
 .filament-forms-repeater-component {
-    & > .relative.flex.justify-center {
+    &>.relative.flex.justify-center {
         @apply justify-start;
     }
 }
@@ -106,6 +653,13 @@
     }
 }
 
-label:has(.sprint-checkboxes) > span {
+label:has(.sprint-checkboxes)>span {
     width: 100%;
+}
+
+/* ── Gantt Chart Container ── */
+.gantt {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(79, 70, 229, 0.08);
 }

@@ -1,54 +1,138 @@
 .kanban-container {
-    @apply w-full flex gap-2 overflow-x-auto;
+    @apply w-full flex gap-3 overflow-x-auto pb-4;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(79, 70, 229, 0.15) transparent;
+
+    &::-webkit-scrollbar {
+        height: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: rgba(79, 70, 229, 0.15);
+        border-radius: 10px;
+
+        &:hover {
+            background-color: rgba(79, 70, 229, 0.25);
+        }
+    }
 
     .kanban-statuses {
         @apply w-full flex flex-col gap-2;
 
-        min-width: 250px;
+        min-width: 280px;
 
         .status-header {
-            @apply w-full flex gap-1 items-center bg-white p-3 mb-3 text-xs font-medium text-gray-400 uppercase rounded-t border-b-4;
+            @apply w-full flex gap-2 items-center p-3 mb-1 text-xs font-semibold uppercase tracking-wider rounded-xl;
+            color: #475569;
+            background: white;
+            border: 1px solid rgba(79, 70, 229, 0.06);
+            box-shadow: 0 1px 3px rgba(30, 27, 75, 0.04);
+            border-left: 4px solid;
+            transition: all 0.2s ease;
+
+            .status-count {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                min-width: 22px;
+                height: 22px;
+                padding: 0 6px;
+                border-radius: 6px;
+                font-size: 0.7rem;
+                font-weight: 700;
+                background: rgba(79, 70, 229, 0.06);
+                color: #6366f1;
+            }
         }
 
         .status-container {
-            @apply relative w-full flex flex-col gap-2 bg-white p-2 rounded overflow-y-auto overflow-x-hidden border-b-4;
+            @apply relative w-full flex flex-col gap-2 p-2 rounded-xl overflow-y-auto overflow-x-hidden;
+            background: rgba(248, 250, 252, 0.8);
+            border: 1px solid rgba(79, 70, 229, 0.04);
+            height: calc(100vh - 220px);
+            scrollbar-width: thin;
+            scrollbar-color: rgba(79, 70, 229, 0.1) transparent;
 
-            height: calc(100vh);
+            &::-webkit-scrollbar {
+                width: 4px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background-color: rgba(79, 70, 229, 0.1);
+                border-radius: 10px;
+            }
 
             .create-record {
-                @apply flex items-center gap-1 mt-auto text-xs text-gray-500 p-3 bg-transparent hover:text-gray-600 hover:bg-gray-100 rounded;
+                @apply flex items-center gap-2 mt-auto text-xs font-medium p-3 rounded-xl;
+                color: #6366f1;
+                background: transparent;
+                border: 1px dashed rgba(79, 70, 229, 0.2);
+                transition: all 0.2s ease;
+                cursor: pointer;
+
+                &:hover {
+                    background: rgba(79, 70, 229, 0.04);
+                    border-color: rgba(79, 70, 229, 0.35);
+                    color: #4f46e5;
+                }
             }
 
             .kanban-record {
-                @apply w-full flex flex-col gap-4 rounded bg-gray-50 border border-gray-200 p-3 hover:shadow hover:bg-gray-100 relative;
+                @apply w-full flex flex-col gap-3 rounded-xl bg-white p-3.5 relative;
+                border: 1px solid rgba(79, 70, 229, 0.06);
+                border-left: 3px solid rgba(79, 70, 229, 0.2);
+                box-shadow: 0 1px 2px rgba(30, 27, 75, 0.04);
+                transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 
                 .handle {
-                    @apply absolute top-0 right-0 text-gray-500 opacity-0 hover:cursor-pointer bg-gray-100 hover:bg-gray-200 rounded-bl p-2 transition;
+                    @apply absolute top-1.5 right-1.5 text-gray-400 opacity-0 hover:cursor-pointer rounded-lg p-1.5 transition-all;
+                    background: rgba(79, 70, 229, 0.04);
+
+                    &:hover {
+                        background: rgba(79, 70, 229, 0.08);
+                        color: #4f46e5;
+                    }
                 }
 
                 &:hover {
+                    border-color: rgba(79, 70, 229, 0.12);
+                    border-left-color: #4f46e5;
+                    box-shadow: 0 4px 12px rgba(30, 27, 75, 0.08);
+                    transform: translateY(-1px);
+
                     .handle {
                         @apply opacity-100;
                     }
                 }
 
                 .record-info {
-                    @apply w-full flex flex-col gap-0;
+                    @apply w-full flex flex-col gap-0.5;
 
                     .record-subtitle {
-                        @apply text-xs text-gray-400;
+                        @apply text-xs;
+                        color: #94a3b8;
+                        font-weight: 500;
                     }
 
                     .record-title {
-                        @apply text-base text-gray-600 hover:cursor-pointer;
+                        @apply text-sm hover:cursor-pointer;
+                        color: #334155;
+                        font-weight: 500;
+                        line-height: 1.4;
 
                         .code {
-                            @apply text-xs font-medium text-gray-400;
+                            @apply text-xs font-semibold;
+                            color: #6366f1;
                         }
 
                         &:hover {
                             .title {
                                 @apply underline;
+                                text-decoration-color: rgba(79, 70, 229, 0.4);
                             }
                         }
                     }
@@ -58,11 +142,12 @@
                     @apply w-full flex justify-between items-center;
 
                     .record-type-code {
-                        @apply flex items-center gap-2;
+                        @apply flex items-center gap-1.5 flex-wrap;
                     }
 
                     .avatar {
-                        @apply w-6 h-6 rounded-full bg-gray-200 bg-cover bg-center;
+                        @apply w-7 h-7 rounded-full bg-gray-200 bg-cover bg-center;
+                        border: 2px solid rgba(79, 70, 229, 0.1);
                     }
                 }
 
@@ -70,16 +155,21 @@
                     @apply w-full flex flex-col gap-1;
 
                     & > div {
-                        @apply flex items-center gap-1 text-sm text-gray-600;
+                        @apply flex items-center gap-1 text-sm;
+                        color: #64748b;
 
                         a {
                             @apply font-medium hover:underline;
+                            color: #6366f1;
                         }
                     }
                 }
 
                 .record-logged-hours {
-                    @apply flex items-center gap-1 text-gray-500 text-xs;
+                    @apply flex items-center gap-1 text-xs;
+                    color: #94a3b8;
+                    padding-top: 4px;
+                    border-top: 1px solid rgba(79, 70, 229, 0.04);
                 }
             }
         }
