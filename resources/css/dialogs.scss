@@ -1,12 +1,18 @@
 .dialog-container {
-    @apply fixed top-0 left-0 right-0 bottom-0 w-full h-full bg-gray-500 bg-opacity-50 z-50 flex flex-col justify-center items-center overflow-auto p-5;
-
+    @apply fixed top-0 left-0 right-0 bottom-0 w-full h-full z-50 flex flex-col justify-center items-center overflow-auto p-5;
+    background: rgba(30, 27, 75, 0.4);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
     margin-top: 0 !important;
+    animation: dialogFadeIn 0.2s ease-out;
 
     .dialog {
-        @apply bg-white rounded-lg shadow border border-gray-200 p-5 max-w-full;
-
+        @apply bg-white shadow-xl p-0 max-w-full;
+        border-radius: 16px;
+        border: 1px solid rgba(79, 70, 229, 0.08);
         width: 400px;
+        overflow: hidden;
+        animation: dialogSlideIn 0.25s ease-out;
 
         &.dialog-lg {
             width: 600px;
@@ -17,29 +23,83 @@
         }
 
         .dialog-header {
-            @apply w-full pb-3 mb-3 border-b border-gray-200 text-lg text-gray-500 font-medium;
+            @apply w-full text-lg font-semibold;
+            padding: 18px 24px;
+            color: white;
+            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4f46e5 100%);
+            border-bottom: none;
+            margin-bottom: 0;
         }
 
         .dialog-content {
             @apply w-full flex flex-col gap-3;
+            padding: 20px 24px;
         }
     }
 
     .dialog-buttons {
-        @apply w-full pt-3 mt-3 border-t border-gray-200 flex items-center gap-3;
+        @apply w-full flex items-center gap-3;
+        padding: 16px 24px;
+        border-top: 1px solid rgba(79, 70, 229, 0.08);
+        margin-top: 0;
 
         button {
-            @apply px-5 py-3 rounded bg-gray-500 hover:bg-gray-600 text-white hover:shadow hover:cursor-pointer font-medium;
-
+            @apply px-5 py-2.5 font-medium;
+            border-radius: 10px;
+            background: #e2e8f0;
+            color: #475569;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
             min-width: 100px;
+            font-size: 0.85rem;
+
+            &:hover {
+                background: #cbd5e1;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+            }
 
             &[type="submit"] {
-                @apply bg-primary-500 hover:bg-primary-600;
+                background: linear-gradient(135deg, #4f46e5, #7c3aed);
+                color: white;
+                box-shadow: 0 2px 8px rgba(79, 70, 229, 0.25);
+
+                &:hover {
+                    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.35);
+                    transform: translateY(-1px);
+                }
             }
 
             &.delete {
-                @apply bg-danger-500 hover:bg-danger-600;
+                background: linear-gradient(135deg, #e11d48, #be123c);
+                color: white;
+                box-shadow: 0 2px 8px rgba(225, 29, 72, 0.25);
+
+                &:hover {
+                    box-shadow: 0 4px 12px rgba(225, 29, 72, 0.35);
+                    transform: translateY(-1px);
+                }
             }
         }
+    }
+}
+
+@keyframes dialogFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes dialogSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-12px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
     }
 }
