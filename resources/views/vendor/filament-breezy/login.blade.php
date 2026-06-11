@@ -13,7 +13,7 @@
     <div class="space-y-6">
         {{ $this->form }}
 
-        <x-filament::button type="submit" class="w-full py-3 bg-zinc-900 hover:bg-zinc-800 text-white dark:bg-white dark:hover:bg-zinc-100 dark:text-zinc-950 font-medium rounded-xl shadow-lg transition-all duration-300">
+        <x-filament::button type="submit" class="w-full py-3 bg-zinc-900 hover:bg-zinc-800 text-zinc-900 dark:bg-white dark:hover:bg-zinc-100 dark:text-zinc-950 font-medium rounded-xl shadow-lg transition-all duration-300">
             {{ __('filament::login.buttons.submit.label') }}
         </x-filament::button>
     </div>
