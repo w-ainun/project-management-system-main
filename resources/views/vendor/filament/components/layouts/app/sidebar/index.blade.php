@@ -1,10 +1,13 @@
 <aside
-    x-data="{}"
+    x-data="{ 
+        theme: localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') 
+    }"
+    x-on:dark-mode-toggled.window="theme = $event.detail"
     @if (config('filament.layout.sidebar.is_collapsible_on_desktop'))
         x-cloak
         x-bind:class="
             $store.sidebar.isOpen
-                ? 'filament-sidebar-open translate-x-0 max-w-[20em] shadow-2xl lg:max-w-[var(--sidebar-width)]'
+                ? 'filament-sidebar-open translate-x-0 max-w-[20em] lg:max-w-[var(--sidebar-width)]'
                 : '-translate-x-full lg:translate-x-0 lg:max-w-[var(--collapsed-sidebar-width)] lg:shadow-none rtl:lg:-translate-x-0 rtl:translate-x-full'
         "
     @else
@@ -16,13 +19,12 @@
         "
     @endif
     @class([
-        'filament-sidebar fixed inset-y-0 left-0 z-20 flex h-screen w-[var(--sidebar-width)] flex-col overflow-hidden transition-all rtl:left-auto rtl:right-0 lg:z-0',
+        'filament-sidebar fixed inset-y-0 left-0 z-20 flex h-screen w-[var(--sidebar-width)] flex-col overflow-hidden transition-all rtl:left-auto rtl:right-0 lg:z-0 border-r border-zinc-200 dark:border-zinc-800 bg-[#fafafa] dark:bg-zinc-900',
         'lg:translate-x-0' => ! config('filament.layout.sidebar.is_collapsible_on_desktop'),
     ])
-    style="background: linear-gradient(180deg, #1e1b4b 0%, #312e81 40%, #3730a3 100%);"
 >
     {{-- Header --}}
-    <header class="filament-sidebar-header relative flex h-[4.5rem] shrink-0 items-center justify-center border-b border-white/10">
+    <header class="filament-sidebar-header relative flex h-[4rem] shrink-0 items-center justify-center border-b border-zinc-200 dark:border-zinc-800">
         <div
             @class([
                 'flex w-full items-center justify-center px-6',
@@ -36,7 +38,7 @@
             @if (config('filament.layout.sidebar.is_collapsible_on_desktop') && (config('filament.layout.sidebar.collapsed_width') !== 0))
                 <button
                     type="button"
-                    class="filament-sidebar-collapse-button hidden h-10 w-10 shrink-0 items-center justify-center rounded-xl text-white/80 outline-none hover:bg-white/10 focus:bg-white/10 transition-colors duration-200 lg:flex"
+                    class="filament-sidebar-collapse-button hidden h-10 w-10 shrink-0 items-center justify-center rounded-xl text-zinc-600 dark:text-zinc-400 outline-none hover:bg-zinc-100 dark:hover:bg-zinc-800 focus:bg-zinc-100 dark:focus:bg-zinc-800 transition-colors duration-200 lg:flex"
                     x-bind:aria-label="
                         $store.sidebar.isOpen
                             ? '{{ __('filament::layout.buttons.sidebar.collapse.label') }}'
@@ -76,7 +78,7 @@
                 <a
                     href="{{ config('filament.home_url') }}"
                     class="inline-block"
-                    style="filter: brightness(0) invert(1);"
+                    x-bind:style="theme === 'dark' ? 'filter: brightness(0) invert(1);' : ''"
                 >
                     <x-filament::brand />
                 </a>
@@ -86,7 +88,7 @@
         @if (config('filament.layout.sidebar.is_collapsible_on_desktop'))
             <button
                 type="button"
-                class="filament-sidebar-close-button flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-white/80 outline-none hover:bg-white/10 focus:bg-white/10 transition-colors duration-200"
+                class="filament-sidebar-close-button flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-zinc-600 dark:text-zinc-400 outline-none hover:bg-zinc-100 dark:hover:bg-zinc-800 focus:bg-zinc-100 dark:focus:bg-zinc-800 transition-colors duration-200"
                 x-bind:aria-label="
                     $store.sidebar.isOpen
                         ? '{{ __('filament::layout.buttons.sidebar.collapse.label') }}'
@@ -153,7 +155,7 @@
 
                 @if (! $loop->last)
                     <li>
-                        <div class="rtl:-mr-auto -mr-6 border-t border-white/10 rtl:-ml-6"></div>
+                        <div class="rtl:-mr-auto -mr-6 border-t border-zinc-200 dark:border-zinc-800 rtl:-ml-6"></div>
                     </li>
                 @endif
             @endforeach

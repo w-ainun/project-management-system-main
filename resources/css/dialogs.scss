@@ -13,6 +13,9 @@
         width: 400px;
         overflow: hidden;
         animation: dialogSlideIn 0.25s ease-out;
+        max-height: calc(100vh - 40px);
+        display: flex;
+        flex-direction: column;
 
         &.dialog-lg {
             width: 600px;
@@ -29,11 +32,14 @@
             background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4f46e5 100%);
             border-bottom: none;
             margin-bottom: 0;
+            flex-shrink: 0;
         }
 
         .dialog-content {
             @apply w-full flex flex-col gap-3;
             padding: 20px 24px;
+            overflow-y: auto;
+            flex: 1;
         }
     }
 
@@ -42,6 +48,7 @@
         padding: 16px 24px;
         border-top: 1px solid rgba(79, 70, 229, 0.08);
         margin-top: 0;
+        flex-shrink: 0;
 
         button {
             @apply px-5 py-2.5 font-medium;
@@ -101,5 +108,46 @@
     to {
         opacity: 1;
         transform: translateY(0) scale(1);
+    }
+}
+
+/* Dark Mode Support for Dialogs */
+.dark {
+    .dialog-container {
+        background: rgba(9, 9, 11, 0.65);
+
+        .dialog {
+            background: #18181b;
+            border-color: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.5), 0 8px 10px -6px rgb(0 0 0 / 0.5);
+
+            .dialog-header {
+                background: linear-gradient(135deg, #18181b 0%, #27272a 100%);
+            }
+        }
+
+        .dialog-buttons {
+            border-top-color: rgba(255, 255, 255, 0.08);
+
+            button {
+                background: #27272a;
+                color: #e2e8f0;
+
+                &:hover {
+                    background: #3f3f46;
+                }
+
+                &[type="submit"] {
+                    background: #ffffff;
+                    color: #18181b;
+                    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+
+                    &:hover {
+                        background: #f4f4f5;
+                        box-shadow: 0 6px 16px rgba(255, 255, 255, 0.15);
+                    }
+                }
+            }
+        }
     }
 }

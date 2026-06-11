@@ -133,12 +133,12 @@ class TicketResource extends Resource
                                                 if ($project?->status_type === 'custom') {
                                                     return TicketStatus::where('project_id', $project->id)
                                                         ->get()
-                                                        ->pluck('name', 'id')
+                                                        ->mapWithKeys(fn ($item) => [$item->id => __($item->name)])
                                                         ->toArray();
                                                 } else {
                                                     return TicketStatus::whereNull('project_id')
                                                         ->get()
-                                                        ->pluck('name', 'id')
+                                                        ->mapWithKeys(fn ($item) => [$item->id => __($item->name)])
                                                         ->toArray();
                                                 }
                                             })
@@ -161,14 +161,14 @@ class TicketResource extends Resource
                                         Forms\Components\Select::make('type_id')
                                             ->label(__('Ticket type'))
                                             ->searchable()
-                                            ->options(fn() => TicketType::all()->pluck('name', 'id')->toArray())
+                                            ->options(fn() => TicketType::all()->mapWithKeys(fn ($item) => [$item->id => __($item->name)])->toArray())
                                             ->default(fn() => TicketType::where('is_default', true)->first()?->id)
                                             ->required(),
 
                                         Forms\Components\Select::make('priority_id')
                                             ->label(__('Ticket priority'))
                                             ->searchable()
-                                            ->options(fn() => TicketPriority::all()->pluck('name', 'id')->toArray())
+                                            ->options(fn() => TicketPriority::all()->mapWithKeys(fn ($item) => [$item->id => __($item->name)])->toArray())
                                             ->default(fn() => TicketPriority::where('is_default', true)->first()?->id)
                                             ->required(),
                                     ]),
@@ -267,7 +267,7 @@ class TicketResource extends Resource
                             <div class="flex items-center gap-2 mt-1">
                                 <span class="filament-tables-color-column relative flex h-6 w-6 rounded-md"
                                     style="background-color: ' . $record->status->color . '"></span>
-                                <span>' . $record->status->name . '</span>
+                                <span>' . __($record->status->name) . '</span>
                             </div>
                         '))
                 ->sortable()
@@ -287,7 +287,7 @@ class TicketResource extends Resource
                             <div class="flex items-center gap-2 mt-1">
                                 <span class="filament-tables-color-column relative flex h-6 w-6 rounded-md"
                                     style="background-color: ' . $record->priority->color . '"></span>
-                                <span>' . $record->priority->name . '</span>
+                                <span>' . __($record->priority->name) . '</span>
                             </div>
                         '))
                 ->sortable()

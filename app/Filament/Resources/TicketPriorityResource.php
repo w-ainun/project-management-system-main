@@ -76,6 +76,7 @@ class TicketPriorityResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->label(__('Priority name'))
                     ->sortable()
+                    ->formatStateUsing(fn ($state) => __($state))
                     ->searchable(),
 
                 Tables\Columns\IconColumn::make('is_default')

@@ -73,6 +73,7 @@ class ProjectStatusResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->label(__('Status name'))
                     ->sortable()
+                    ->formatStateUsing(fn ($state) => __($state))
                     ->searchable(),
 
                 Tables\Columns\IconColumn::make('is_default')

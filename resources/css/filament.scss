@@ -10,22 +10,31 @@
 
 /* ── Theme Variables ── */
 :root {
-    --indigo-deep: #1e1b4b;
-    --indigo-mid: #312e81;
-    --indigo-bright: #4f46e5;
-    --violet-accent: #7c3aed;
-    --teal-accent: #14b8a6;
-    --slate-bg: #f8fafc;
-    --card-shadow: 0 1px 3px rgba(30, 27, 75, 0.06), 0 4px 12px rgba(30, 27, 75, 0.04);
-    --card-shadow-hover: 0 4px 12px rgba(30, 27, 75, 0.1), 0 8px 24px rgba(30, 27, 75, 0.06);
+    --indigo-deep: #18181b;     /* zinc 900 */
+    --indigo-mid: #27272a;      /* zinc 800 */
+    --indigo-bright: #3f3f46;   /* zinc 700 */
+    --violet-accent: #52525b;   /* zinc 600 */
+    --teal-accent: #71717a;     /* zinc 500 */
+    --slate-bg: #f4f4f5;        /* zinc 100 */
+    --card-shadow: 0 1px 3px rgba(24, 24, 27, 0.05), 0 4px 12px rgba(24, 24, 27, 0.03);
+    --card-shadow-hover: 0 4px 12px rgba(24, 24, 27, 0.08), 0 8px 24px rgba(24, 24, 27, 0.05);
+}
+
+.dark {
+    --indigo-deep: #f4f4f5;     /* zinc 100 */
+    --indigo-mid: #e4e4e7;      /* zinc 200 */
+    --indigo-bright: #d4d4d8;   /* zinc 300 */
+    --violet-accent: #a1a1aa;   /* zinc 400 */
+    --teal-accent: #71717a;     /* zinc 500 */
+    --slate-bg: #18181b;        /* zinc 900 */
 }
 
 /* ── Custom Sidebar Styles ── */
 
-/* Custom scrollbar for the dark sidebar */
+/* Custom scrollbar for the light sidebar */
 .sidebar-custom-scrollbar {
     scrollbar-width: thin;
-    scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+    scrollbar-color: rgba(0, 0, 0, 0.1) transparent;
 
     &::-webkit-scrollbar {
         width: 4px;
@@ -36,18 +45,13 @@
     }
 
     &::-webkit-scrollbar-thumb {
-        background-color: rgba(255, 255, 255, 0.15);
+        background-color: rgba(0, 0, 0, 0.1);
         border-radius: 20px;
 
         &:hover {
-            background-color: rgba(255, 255, 255, 0.25);
+            background-color: rgba(0, 0, 0, 0.2);
         }
     }
-}
-
-/* Remove the default right border since sidebar now has gradient bg */
-.filament-sidebar {
-    border-right: none !important;
 }
 
 /* Smooth hover animation on sidebar items */
@@ -63,7 +67,7 @@
         transform: translateY(-50%);
         width: 3px;
         height: 0;
-        background: white;
+        background: #18181b;
         border-radius: 0 4px 4px 0;
         transition: height 0.2s ease;
     }
@@ -75,7 +79,7 @@
 
 .filament-sidebar-item-active a::before {
     height: 60% !important;
-    background: white !important;
+    background: #18181b !important;
 }
 
 /* ── Page Header Enhancement ── */
@@ -89,7 +93,7 @@
 
 /* ── Welcome Banner ── */
 .midnight-welcome-banner {
-    background: linear-gradient(135deg, #1e1b4b 0%, #312e81 40%, #4f46e5 80%, #7c3aed 100%);
+    background: linear-gradient(135deg, #18181b 0%, #27272a 40%, #3f3f46 80%, #52525b 100%);
     border-radius: 16px;
     padding: 28px 32px;
     color: white;
@@ -289,7 +293,7 @@
     margin: 0 auto;
 
     .board-header-card {
-        background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4f46e5 100%);
+        background: linear-gradient(135deg, #18181b 0%, #27272a 50%, #3f3f46 100%);
         border-radius: 16px;
         padding: 32px;
         color: white;
@@ -297,7 +301,7 @@
         margin-bottom: 24px;
         position: relative;
         overflow: hidden;
-        box-shadow: 0 4px 20px rgba(30, 27, 75, 0.3);
+        box-shadow: 0 4px 20px rgba(24, 24, 27, 0.3);
 
         &::before {
             content: '';
@@ -472,11 +476,11 @@
 
 .btn-teal {
     @extend .btn-indigo;
-    background: linear-gradient(135deg, var(--teal-accent), #0d9488);
-    box-shadow: 0 2px 8px rgba(20, 184, 166, 0.25);
+    background: linear-gradient(135deg, var(--teal-accent), var(--indigo-mid));
+    box-shadow: 0 2px 8px rgba(24, 24, 27, 0.2);
 
     &:hover {
-        box-shadow: 0 4px 12px rgba(20, 184, 166, 0.35);
+        box-shadow: 0 4px 12px rgba(24, 24, 27, 0.3);
     }
 }
 
@@ -657,9 +661,291 @@ label:has(.sprint-checkboxes)>span {
     width: 100%;
 }
 
-/* ── Gantt Chart Container ── */
+/* ── Gantt Chart Container & Alignment Fixes ── */
 .gantt {
     border-radius: 12px;
     overflow: hidden;
-    border: 1px solid rgba(79, 70, 229, 0.08);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    font-family: inherit !important;
+    background: #ffffff;
+
+    table {
+        border-collapse: collapse !important;
+        border-spacing: 0 !important;
+    }
+
+    tr {
+        height: 38px !important;
+    }
+
+    td, th {
+        padding: 0 10px !important;
+        height: 38px !important;
+        box-sizing: border-box !important;
+        vertical-align: middle !important;
+        border: 1px solid #f1f5f9 !important;
+    }
+
+    /* Left list header (Task Heading) matches right side minor heading height (38px) */
+    .gtaskheading {
+        height: 38px !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        font-size: 0.7rem !important;
+        letter-spacing: 0.06em !important;
+        color: #475569 !important;
+        background-color: #f8fafc !important;
+        border-bottom: 2px solid #e2e8f0 !important;
+    }
+
+    /* Left spanned cell in first row containing selector */
+    .gspanning.gtaskname {
+        height: 38px !important;
+        padding: 0 8px !important;
+        vertical-align: middle !important;
+        border-bottom: 1px solid #e2e8f0 !important;
+    }
+
+    /* Right side Major & Minor headings */
+    .gmajorheading {
+        height: 38px !important;
+        background-color: #f8fafc !important;
+        color: #1e293b !important;
+        font-weight: 700 !important;
+        font-size: 0.75rem !important;
+        border-bottom: 1px solid #e2e8f0 !important;
+    }
+
+    .gminorheading {
+        height: 38px !important;
+        background-color: #f8fafc !important;
+        color: #475569 !important;
+        font-weight: 600 !important;
+        font-size: 0.7rem !important;
+        border-bottom: 2px solid #e2e8f0 !important;
+    }
+
+    /* Task list details cells */
+    .gtaskname, .gres, .gdur, .gcomp, .gstartdate, .genddate {
+        font-size: 0.8rem !important;
+        color: #334155 !important;
+        background-color: #ffffff !important;
+        height: 38px !important;
+    }
+
+    .gtaskname div {
+        font-weight: 500 !important;
+    }
+
+    /* Grid cells background styling */
+    .gtaskcell {
+        background-color: #ffffff !important;
+    }
+
+    .gtaskcellwkend, .gminorheadingwkend {
+        background-color: #f8fafc !important;
+    }
+
+    /* Row hover highlighting */
+    .gitemhighlight td {
+        background-color: #f8fafc !important;
+        background-image: none !important;
+    }
+
+    /* Premium task bar indicators styling */
+    .ggroupblack {
+        border-radius: 6px !important;
+        background-color: #0f172a !important;
+        height: 8px !important;
+        margin-top: 1px !important;
+    }
+
+    .gtaskblue {
+        border-radius: 6px !important;
+        background: linear-gradient(135deg, #3b82f6, #2563eb) !important;
+        box-shadow: 0 1px 3px rgba(37, 99, 235, 0.2) !important;
+        border: none !important;
+    }
+
+    .g-custom-task {
+        border-radius: 6px !important;
+        background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+        box-shadow: 0 1px 3px rgba(79, 70, 229, 0.2) !important;
+        border: none !important;
+    }
+
+    /* Form format selectors header */
+    .gselector {
+        font-size: 0.75rem !important;
+        font-weight: 600 !important;
+        color: #475569 !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        border: none !important;
+        background: transparent !important;
+        height: 38px !important;
+        width: auto !important;
+        max-width: none !important;
+        min-width: 0 !important;
+    }
+
+    .gformlabel {
+        font-size: 0.7rem !important;
+        font-weight: 500 !important;
+        padding: 2px 6px !important;
+        margin: 0 !important;
+        background: #ffffff !important;
+        border: 1px solid #cbd5e1 !important;
+        border-radius: 4px !important;
+        cursor: pointer !important;
+        transition: all 0.15s ease !important;
+        color: #475569 !important;
+        line-height: 1 !important;
+        display: inline-block !important;
+
+        &:hover, &.gselected {
+            background-color: #0f172a !important;
+            color: #ffffff !important;
+            border-color: #0f172a !important;
+        }
+    }
+}
+
+/* ── View Transitions (Theme Toggle circular reveal) ── */
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+}
+
+::view-transition-new(root) {
+    animation: reveal-theme-toggle 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes reveal-theme-toggle {
+    from {
+        clip-path: circle(0px at var(--x) var(--y));
+    }
+    to {
+        clip-path: circle(var(--r) at var(--x) var(--y));
+    }
+}
+
+/* ── Gantt Chart Dark Mode Overrides ── */
+.dark {
+    .gantt {
+        color: #cbd5e1;
+        border-color: rgba(255, 255, 255, 0.08) !important;
+
+        .glistlbl,
+        .glistgrid,
+        .gchartlbl,
+        .gchartgrid,
+        .gmajorheading,
+        .gminorheading,
+        .gtaskheading,
+        .gname,
+        .gtaskname,
+        .gres,
+        .gdur,
+        .gcomp,
+        .gstartdate,
+        .gplanstartdate,
+        .gplanenddate,
+        .gcost,
+        .genddate {
+            background-color: #18181b !important;
+            color: #cbd5e1 !important;
+            border-color: #27272a !important;
+        }
+
+        .gtaskcellwkend,
+        .gtaskcellcurrent,
+        .gminorheadingwkend,
+        .ggroupitem {
+            background-color: #27272a !important;
+            color: #cbd5e1 !important;
+            border-color: #27272a !important;
+        }
+
+        .gmileitem,
+        .glineitem,
+        .gtaskcell {
+            background-color: #18181b !important;
+            color: #cbd5e1 !important;
+            border-color: #27272a !important;
+        }
+
+        .gitemhighlight td {
+            background-color: #3f3f46 !important;
+            color: #ffffff !important;
+        }
+
+        .gitemdifferent td {
+            background-color: rgba(255, 255, 255, 0.05) !important;
+        }
+
+        .glinev,
+        .glineh {
+            border-color: #3f3f46 !important;
+        }
+
+        .gadditional {
+            background-color: #18181b !important;
+            border-color: #27272a !important;
+            color: #cbd5e1 !important;
+        }
+
+        span.gfoldercollapse {
+            color: #ffffff !important;
+        }
+
+        /* Customize task info tooltip in dark mode */
+        .JSGanttToolTipcont {
+            background: #27272a !important;
+            color: #e2e8f0 !important;
+            border-color: #3f3f46 !important;
+        }
+
+        .gTaskInfo {
+            background: #18181b !important;
+            border-color: #3f3f46 !important;
+        }
+
+        .gTtTitle {
+            color: #ffffff !important;
+        }
+
+        .gTaskLabel {
+            color: #cbd5e1 !important;
+        }
+
+        .gTaskText {
+            color: #e2e8f0 !important;
+        }
+
+        .gTaskNotes {
+            color: #cbd5e1 !important;
+        }
+
+        .gspanning.gtaskname {
+            background-color: #18181b !important;
+            border-bottom-color: rgba(255, 255, 255, 0.1) !important;
+        }
+
+        .gformlabel {
+            background: #27272a !important;
+            border-color: rgba(255, 255, 255, 0.15) !important;
+            color: #cbd5e1 !important;
+
+            &:hover, &.gselected {
+                background-color: #ffffff !important;
+                color: #18181b !important;
+                border-color: #ffffff !important;
+            }
+        }
+    }
 }

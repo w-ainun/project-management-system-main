@@ -175,3 +175,96 @@
         }
     }
 }
+
+/* Dark Mode Support for Kanban / Board Page */
+.dark {
+    .kanban-container {
+        scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+
+        &::-webkit-scrollbar-thumb {
+            background-color: rgba(255, 255, 255, 0.15);
+            &:hover {
+                background-color: rgba(255, 255, 255, 0.25);
+            }
+        }
+
+        .kanban-statuses {
+            .status-header {
+                color: #e2e8f0;
+                background: #18181b;
+                border-color: rgba(255, 255, 255, 0.06);
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+
+                .status-count {
+                    background: rgba(255, 255, 255, 0.06);
+                    color: #a5b4fc;
+                }
+            }
+
+            .status-container {
+                background: rgba(24, 24, 27, 0.6);
+                border-color: rgba(255, 255, 255, 0.04);
+
+                &::-webkit-scrollbar-thumb {
+                    background-color: rgba(255, 255, 255, 0.1);
+                }
+
+                .create-record {
+                    color: #a5b4fc;
+                    border-color: rgba(255, 255, 255, 0.1);
+
+                    &:hover {
+                        background: rgba(255, 255, 255, 0.04);
+                        border-color: rgba(255, 255, 255, 0.2);
+                        color: #c7d2fe;
+                    }
+                }
+
+                .kanban-record {
+                    background: #27272a;
+                    border-color: rgba(255, 255, 255, 0.06);
+                    border-left-color: rgba(255, 255, 255, 0.2);
+                    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+
+                    .handle {
+                        color: #94a3b8;
+                        background: rgba(255, 255, 255, 0.04);
+
+                        &:hover {
+                            background: rgba(255, 255, 255, 0.08);
+                            color: #a5b4fc;
+                        }
+                    }
+
+                    &:hover {
+                        border-color: rgba(255, 255, 255, 0.12);
+                        border-left-color: #a5b4fc;
+                        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+                    }
+
+                    .record-info {
+                        .record-title {
+                            color: #f4f4f5;
+
+                            .code {
+                                color: #818cf8;
+                            }
+                        }
+                    }
+
+                    .record-relations > div {
+                        color: #94a3b8;
+
+                        a {
+                            color: #818cf8;
+                        }
+                    }
+
+                    .record-logged-hours {
+                        border-top-color: rgba(255, 255, 255, 0.04);
+                    }
+                }
+            }
+        }
+    }
+}

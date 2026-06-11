@@ -79,6 +79,7 @@ class TicketTypeResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->label(__('Type name'))
                     ->sortable()
+                    ->formatStateUsing(fn ($state) => __($state))
                     ->searchable(),
 
                 IconColumn::make('icon')

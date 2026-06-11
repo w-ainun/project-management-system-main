@@ -94,7 +94,7 @@ class ProjectResource extends Resource
                                         Forms\Components\Select::make('status_id')
                                             ->label(__('Project status'))
                                             ->searchable()
-                                            ->options(fn() => ProjectStatus::all()->pluck('name', 'id')->toArray())
+                                            ->options(fn() => ProjectStatus::all()->mapWithKeys(fn ($item) => [$item->id => __($item->name)])->toArray())
                                             ->default(fn() => ProjectStatus::where('is_default', true)->first()?->id)
                                             ->required(),
                                     ]),
@@ -167,7 +167,7 @@ class ProjectResource extends Resource
                             <div class="flex items-center gap-2">
                                 <span class="filament-tables-color-column relative flex h-6 w-6 rounded-md"
                                     style="background-color: ' . $record->status->color . '"></span>
-                                <span>' . $record->status->name . '</span>
+                                <span>' . __($record->status->name) . '</span>
                             </div>
                         '))
                     ->sortable()

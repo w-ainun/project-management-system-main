@@ -64,6 +64,7 @@ class ActivityResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->label(__('Activity name'))
                     ->sortable()
+                    ->formatStateUsing(fn ($state) => __($state))
                     ->searchable(),
 
                 Tables\Columns\TextColumn::make('created_at')

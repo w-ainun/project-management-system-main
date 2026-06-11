@@ -29,7 +29,7 @@
             @endif
             class="flex w-full items-center justify-between group"
         >
-            <div class="flex items-center gap-4 text-indigo-200/60">
+            <div class="flex items-center gap-4 text-zinc-400/80">
                 @if ($icon)
                     <x-dynamic-component
                         :component="$icon"
@@ -44,7 +44,7 @@
 
             @if ($collapsible)
                 <x-heroicon-o-chevron-down
-                    class="w-3 h-3 text-indigo-300/50 transition-transform duration-200 group-hover:text-indigo-200"
+                    class="w-3 h-3 text-zinc-400/60 transition-transform duration-200 group-hover:text-zinc-600"
                     x-bind:class="$store.sidebar.groupIsCollapsed(label) || '-rotate-180'"
                     x-cloak
                 />

@@ -1,57 +1,32 @@
 <x-filament-breezy::auth-card action="authenticate">
 
-    <div class="w-full flex justify-center">
+    <div class="w-full flex justify-center mb-2">
         <x-filament::brand />
     </div>
 
-    <h2 class="font-bold tracking-tight text-center text-2xl">
-        {{ __('filament::login.heading') }}
-    </h2>
+    <div>
+        <h2 class="font-bold tracking-tight text-center text-black dark:text-white text-3xl bg-gradient-to-r from-slate-950 to-indigo-950 dark:from-white dark:to-slate-300 bg-clip-text text-transparent">
+            {{ __('filament::login.heading') }}
+        </h2>
+    </div>
 
-    @if(session()->has('oidc_error'))
-        <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
-            <span class="font-medium">{{ __('OIDC Connect error') }}</span> {{ __('Invalid account!') }}
-        </div>
-    @endif
-
-    @if(config('system.login_form.is_enabled'))
-        <div>
-            @if(config("filament-breezy.enable_registration"))
-                <p class="mt-2 text-sm text-center">
-                    {{ __('filament-breezy::default.or') }}
-                    <a class="text-primary-600" href="{{route(config('filament-breezy.route_group_prefix').'register')}}">
-                        {{ strtolower(__('filament-breezy::default.registration.heading')) }}
-                    </a>
-                </p>
-            @endif
-        </div>
-
+    <div class="space-y-6">
         {{ $this->form }}
 
-        <x-filament::button type="submit" class="w-full">
+        <x-filament::button type="submit" class="w-full py-3 bg-zinc-900 hover:bg-zinc-800 text-white dark:bg-white dark:hover:bg-zinc-100 dark:text-zinc-950 font-medium rounded-xl shadow-lg transition-all duration-300">
             {{ __('filament::login.buttons.submit.label') }}
         </x-filament::button>
+    </div>
 
-        <div class="text-center">
-            <a class="text-primary-600 hover:text-primary-700" href="{{route(config('filament-breezy.route_group_prefix').'password.request')}}">{{ __('filament-breezy::default.login.forgot_password_link') }}</a>
+    @if(config("filament-breezy.enable_registration"))
+        <div class="text-center mt-4 pt-4 border-t border-gray-100 dark:border-gray-800/50">
+            <p class="text-sm text-slate-500 dark:text-slate-400">
+                {{ __('Belum punya akun?') }}
+                <a class="text-primary-600 hover:text-primary-500 font-semibold transition-colors" href="{{route(config('filament-breezy.route_group_prefix').'register')}}">
+                    {{ __('Daftar sekarang') }}
+                </a>
+            </p>
         </div>
     @endif
 
-    @if(config('services.oidc.is_enabled'))
-        <x-filament::button
-            color="secondary"
-            class="w-full"
-            tag="a"
-            :href="route('oidc.redirect')"
-        >
-            <div class="w-full flex items-center gap-2">
-                <x-heroicon-o-login class="w-5 h-5" />
-                {{ __('OIDC Connect') }}
-            </div>
-        </x-filament::button>
-    @endif
-
-    @if(config('filament-socialite.enabled'))
-        <x-filament-socialite::buttons />
-    @endif
 </x-filament-breezy::auth-card>

@@ -38,8 +38,8 @@
         @endif
         @class([
             'flex items-center justify-center gap-3 rounded-xl px-3 py-2.5 font-medium transition-all duration-200',
-            'text-white/70 hover:bg-white/10 hover:text-white focus:bg-white/10' => ! $active,
-            'bg-white/20 text-white shadow-lg shadow-indigo-900/30 backdrop-blur-sm' => $active,
+            'text-zinc-600 hover:bg-zinc-200/50 hover:text-zinc-900 focus:bg-zinc-200/50' => ! $active,
+            'bg-zinc-900 text-white shadow-lg shadow-zinc-950/10' => $active,
         ])
     >
         <x-dynamic-component
@@ -48,7 +48,7 @@
                 \Illuminate\Support\Arr::toCssClasses([
                     'h-5 w-5 shrink-0 transition-colors duration-200',
                     'text-white' => $active,
-                    'text-indigo-300' => ! $active,
+                    'text-zinc-400' => ! $active,
                 ])
             "
         />

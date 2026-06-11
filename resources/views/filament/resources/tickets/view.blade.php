@@ -20,7 +20,7 @@
                         {{ $record->project->name }}
                     </span>
                 </div>
-                <span class="text-xl text-gray-700">
+                <span class="text-xl text-gray-700 dark:text-gray-200">
                     {{ $record->name }}
                 </span>
             </div>
@@ -225,22 +225,22 @@
             <div class="w-full flex items-center gap-2">
                 <button wire:click="selectTab('comments')"
                         class="md:text-xl text-sm p-3 border-b-2 border-transparent hover:border-primary-500 flex items-center
-                        gap-1 @if($tab === 'comments') border-primary-500 text-primary-500 @else text-gray-700 @endif">
+                        gap-1 @if($tab === 'comments') border-primary-500 text-primary-500 @else text-gray-700 dark:text-gray-300 @endif">
                     {{ __('Comments') }}
                 </button>
                 <button wire:click="selectTab('activities')"
                         class="md:text-xl text-sm p-3 border-b-2 border-transparent hover:border-primary-500
-                        @if($tab === 'activities') border-primary-500 text-primary-500 @else text-gray-700 @endif">
+                        @if($tab === 'activities') border-primary-500 text-primary-500 @else text-gray-700 dark:text-gray-300 @endif">
                     {{ __('Activities') }}
                 </button>
                 <button wire:click="selectTab('time')"
                         class="md:text-xl text-sm p-3 border-b-2 border-transparent hover:border-primary-500
-                        @if($tab === 'time') border-primary-500 text-primary-500 @else text-gray-700 @endif">
+                        @if($tab === 'time') border-primary-500 text-primary-500 @else text-gray-700 dark:text-gray-300 @endif">
                     {{ __('Time logged') }}
                 </button>
                 <button wire:click="selectTab('attachments')"
                         class="md:text-xl text-sm p-3 border-b-2 border-transparent hover:border-primary-500
-                        @if($tab === 'attachments') border-primary-500 text-primary-500 @else text-gray-700 @endif">
+                        @if($tab === 'attachments') border-primary-500 text-primary-500 @else text-gray-700 dark:text-gray-300 @endif">
                     {{ __('Attachments') }}
                 </button>
             </div>

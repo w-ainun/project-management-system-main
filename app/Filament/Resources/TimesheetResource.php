@@ -54,7 +54,7 @@ class TimesheetResource extends Resource
                             ->searchable()
                             ->reactive()
                             ->options(function ($get, $set) {
-                                return Activity::all()->pluck('name', 'id')->toArray();
+                                return Activity::all()->mapWithKeys(fn ($item) => [$item->id => __($item->name)])->toArray();
                             }),
                         TextInput::make('value')
                             ->label(__('Time to log'))
@@ -90,7 +90,8 @@ class TimesheetResource extends Resource
 
                 Tables\Columns\TextColumn::make('activity.name')
                     ->label(__('Activity'))
-                    ->sortable(),
+                    ->sortable()
+                    ->formatStateUsing(fn ($state) => __($state)),
 
                 Tables\Columns\TextColumn::make('ticket.name')
                     ->label(__('Ticket'))
