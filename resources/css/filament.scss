@@ -4,6 +4,64 @@
 @import './dialogs';
 @import './loading.io';
 
+/* ── Custom Sidebar Styles ── */
+
+/* Custom scrollbar for the dark sidebar */
+.sidebar-custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+
+    &::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: rgba(255, 255, 255, 0.15);
+        border-radius: 20px;
+
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.25);
+        }
+    }
+}
+
+/* Remove the default right border since sidebar now has gradient bg */
+.filament-sidebar {
+    border-right: none !important;
+}
+
+/* Smooth hover animation on sidebar items */
+.filament-sidebar-item a {
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 3px;
+        height: 0;
+        background: white;
+        border-radius: 0 4px 4px 0;
+        transition: height 0.2s ease;
+    }
+
+    &:hover::before {
+        height: 60%;
+    }
+}
+
+.filament-sidebar-item-active a::before {
+    height: 60% !important;
+    background: white !important;
+}
+
 .filament-header-heading {
     display: block;
 }
